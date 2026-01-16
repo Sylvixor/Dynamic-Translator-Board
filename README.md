@@ -11,6 +11,7 @@ Dit is de repository voor project 5/6, de dynamic translator board.
 
 ## Bestandsstructuur
 
+```
 DTB/
 ├── LICENSE
 ├── README.md
@@ -31,3 +32,4 @@ DTB/
 |   ├── Risicoanalyse.md
 |   └── Testrapport.md
 └── .gitignore
+```
