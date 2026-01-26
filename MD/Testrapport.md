@@ -1,398 +1,175 @@
-Testplan
+# Testplan  
+## Dynamic Translator Board
 
-Dynamic Translator Board​
+**Scott van der Heijden** (1103349)  
+**Arda Keskin** (1096673)  
+**Tijmen Groenevelt** (1103349)  
+**Omar Mansour** (1051322)  
 
-Scott van der Heijden, Arda Keskin, Tijmen Groenevelt, Omar Mansour
+*Datum: 10-10-2025*
 
-10-10-2025
+---
 
-Contents
+## Inhoud
+1. Inleiding  
+2. Test 1: Hot-swap sensor (plug-and-play)  
+3. Test 2: Automatische detectie bij opstart (cold-plug)  
+4. Test 3: Waardencontrole en geldige dataweergave  
+5. Test 4: Communicatie via I²C  
+6. Test 5: CO₂- en deeltjesmetingen gelijktijdig  
+7. Changelog  
 
-[Inleiding 3](#_Toc214627476)
+---
 
-[Test 1: Hot-swap sensor (plug-and-play) 4](#_Toc214627477)
+## Inleiding
+Dit document beschrijft de testen die zijn uitgevoerd op het Dynamic Translator Board. Het hoofddoel van dit verslag is om aan te tonen dat het systeem voldoet aan de gestelde requirements en acceptatiecriteria van het project.
 
-[Test 2: Automatische detectie bij opstart (cold-plug) 5](#_Toc214627478)
+Daarnaast zorgt dit document ervoor dat de testen reproduceerbaar zijn, zodat toekomstige ontwikkelaars of testers dezelfde stappen kunnen volgen om de resultaten te verifiëren. De testen zijn opgesteld op basis van de functionele en niet-functionele requirements van Project 5/6.
 
-[Test 3: Dashboard: juiste eenheden en labels 6](#_Toc214627479)
+---
 
-[Test 4: Waardencontrole en geldige dataweergave 7](#_Toc214627480)
+## Test 1: Hot-swap sensor (plug-and-play)
 
-[Test 5: Communicatie via I²C 8](#_Toc214627481)
-
-[Test 6: CO₂- en deeltjesmetingen gelijktijdig 9](#_Toc214627482)
-
-[Test 7: Sleep-modus en energieverbruik 10](#_Toc214627483)
-
-[Changelog 12](#_Toc214627484)
-
-# Inleiding
-
-<br/>Dit document beschrijft de testen die zijn uitgevoerd op het Dynamic Translator Board.  
-Het hoofddoel van dit verslag is om aan te tonen dat het systeem voldoet aan de gestelde requirements en acceptatiecriteria van het project.  
-Daarnaast zorgt dit document ervoor dat de testen reproduceerbaar zijn, zodat toekomstige ontwikkelaars of testers dezelfde stappen kunnen volgen om de resultaten te verifiëren.
-
-De testen zijn opgesteld op basis van de functionele en niet-functionele requirements die horen bij het project Dynamic Translator Board, onderdeel van Project 5/6 .
-
-# Test 1: Hot-swap sensor (plug-and-play)
-
-## Vraagstelling
-
+### Vraagstelling
 Is het Dynamic Translator Board in staat om automatisch een nieuwe sensor te herkennen wanneer een aangesloten sensor wordt losgekoppeld en vervangen, zonder dat het systeem opnieuw moet worden opgestart?
 
-Meetopstelling en meetinstrumenten  
-De testopstelling bestaat uit een Pi 4 microcontroller verbonden met het Dynamic Translator Board waarop sensoren worden aangesloten.  
-<br/>Meetinstrumenten:
+### Meetopstelling en meetinstrumenten
+**Meetinstrumenten:**
+- Raspberry Pi 4 Model B  
+- HM3301 deeltjes-sensor  
+- SCD4x CO₂-sensor (I²C)  
+- Laptop met testsoftware  
+
+### Externe voorwaarden
+- Gesloten ruimte (18–22 °C)  
+- Constante luchtdruk en luchtstroom  
+- Maximaal twee personen aanwezig  
 
-- Raspberry Pi 4 model B
-- HM3301 sensor
-- SCD4x - CO₂-sensor (I²C)
-- Laptop met de code
+### Te verrichten handelingen
+1. Upload software met automatische detectie naar de Pi.
+2. Sluit de SCD4x CO₂-sensor aan.
+3. Start het systeem en controleer detectie.
+4. Noteer gemeten waarden.
+5. Koppel de sensor los tijdens runtime.
+6. Sluit de HM3301-sensor aan.
+7. Observeer automatische detectie.
+8. Herhaal de procedure tweemaal.
 
-## Externe voorwaarden
+### Vast te leggen data
+- Gedetecteerde sensor-ID  
+- Detectietijd (s)  
+- Terminalmeldingen  
+- Meetwaarden (CO₂ ppm, PM µg/m³)  
+- Aantal succesvolle detecties  
 
-- De test is uitgevoerd in een gesloten ruimte bij kamertemperatuur (tussen 18-22 °C).
-- Luchtdruk en luchtstroom zijn constant gehouden.
-- Slechts twee personen aanwezig tijdens de test om externe invloed (adem, beweging) te minimaliseren.
+### Resultaten
+25-12-2025: Beide sensoren werden consequent herkend na loskoppelen en opnieuw aansluiten. Het systeem gaf duidelijke meldingen bij ontkoppeling en hervatte automatisch het uitlezen.
 
-Te verrichten handelingen
+### Conclusie
+De test is succesvol: hot-swapping werkt stabiel en betrouwbaar.
 
-- Upload de software met automatische detectie naar de Pi.
-- Sluit de SCD4x CO₂-sensor aan op de PCB.
-- Start het systeem en controleer of de sensor correct wordt herkend.
-- Noteer de gemeten waarden (ppm CO₂).
-- Koppel de SCD4x los terwijl het systeem actief blijft.
-- Sluit de HM3301 deeltjes-sensor aan op dezelfde connector.
-- Observeer het gedrag van het systeem en noteer of de nieuwe sensor automatisch wordt herkend.
-- Herhaal de procedure twee keer om de betrouwbaarheid te bevestigen.
+---
 
-## Vast te leggen data
+## Test 2: Automatische detectie bij opstart (cold-plug)
 
-- Sensor-ID of naam die door het systeem wordt herkend.
-- Tijd (s) tussen het loskoppelen van de eerste sensor en het detecteren van de nieuwe sensor.
-- Terminalmelding of log-uitvoer bij detectie.
-- Meetwaarden van beide sensoren (CO₂ in ppm, PM in µg/m³).
-- Aantal succesvolle herkennende pogingen (van 3 tests).
+### Vraagstelling
+Worden aangesloten sensoren automatisch herkend bij het opstarten van het systeem?
 
-Analyse
+### Meetopstelling
+- Raspberry Pi 4 met DTB  
+- SCD4x en HM3301 sensor  
 
-Beschrijf of de waardes overeenkomen, of dat het te veel uitwijkt van elkaar.  
-Leid hieruit af wat het resultaat van de test is.  
-<br/>
+### Te verrichten handelingen
+1. Sluit sensor aan vóór opstart.
+2. Start systeem.
+3. Observeer detectie.
+4. Herhaal voor beide sensoren.
 
-# Test 2: Automatische detectie bij opstart (cold-plug)
+### Vast te leggen data
+- Herkend sensortype  
+- Aantal succesvolle detecties  
+- Eerste meetwaarde  
 
-## Vraagstelling
+### Resultaten
+25-12-2025: Beide sensoren werden bij opstart direct correct herkend zonder fouten.
 
-Worden de aangesloten sensoren automatisch herkend door het Dynamic Translator Board wanneer het systeem wordt ingeschakeld, zonder dat handmatige configuratie of herstart nodig is?  
-<br/>Meetopstelling en meetinstrumenten
+### Conclusie
+Cold-plug detectie functioneert correct.
 
-De opstelling bestaat uit het Dynamic Translator Board met een Pi 4 microcontroller, waarop één sensor (CO₂ of PM) is aangesloten vóór het inschakelen.  
-Het systeem is verbonden met een laptop voor datalogging en observatie via de terminal.  
-<br/>Gebruikte sensoren:
+---
 
-- SCD4x - CO₂-sensor (I²C)
-- HM3301 - deeltjes-sensor (I²C)
+## Test 3: Waardencontrole en geldige dataweergave
 
-Meetinstrumenten:
+### Vraagstelling
+Geeft het systeem duidelijke foutmeldingen bij sensorproblemen?
 
-- Pi 4 met firmware voor automatische detectie
-- Laptop met terminal
-- Multimeter (voor spanningcontrole)
+### Te verrichten handelingen
+1. Start systeem met aangesloten sensor.
+2. Koppel sensor los tijdens meting.
+3. Observeer foutmelding.
+4. Sluit sensor opnieuw aan.
+5. Test met onbekende sensor.
 
-## Externe voorwaarden
+### Vast te leggen data
+- Type sensor  
+- Foutmelding  
+- Detectietijd  
+- Hersteltijd  
 
-- De test is uitgevoerd in een gesloten ruimte bij kamertemperatuur (tussen 18-22 °C).
-- Luchtdruk en luchtstroom zijn constant gehouden.
-- Slechts één persoon aanwezig tijdens de test om externe invloed (adem, beweging) te minimaliseren.
+### Resultaten
+25-12-2025: Het systeem gaf duidelijke visuele en tekstuele feedback zonder crashes.
 
-Te verrichten handelingen
+### Conclusie
+Foutafhandeling is duidelijk, stabiel en gebruikersvriendelijk.
 
-- Sluit de SCD4x-sensor aan op het Dynamic Translator.
-- Observeer de terminal, noteer of de sensor automatisch wordt gedetecteerd.
-- Herhaal de test met de HM3301-sensor.
-- Herhaal beide tests in totaal twee keer voor betrouwbaarheid.
+---
 
-## Vast te leggen data
+## Test 4: Communicatie via I²C
 
-- Herkende sensortype (SCD4x of HM3301)
-- Aantal keren dat automatische detectie succesvol was (van 3 pogingen per sensor)
-- Log-melding of statusbericht bij detectie
-- Eerste gemeten waarde (CO₂ in ppm of PM in µg/m³)
+### Vraagstelling
+Is de I²C-communicatie betrouwbaar en stabiel?
 
-Analyse
+### Te verrichten handelingen
+- Sluit sensor aan op I²C
+- Observeer terminal-output
+- Controleer update-interval (2 s)
 
-- Controleer of het systeem consistent de juiste sensor identificeert bij elke herstart.
-- Controleer dat de data onmiddellijk correct wordt weergegeven, zonder handmatige herconfiguratie.
-- Evalueer of er fouten, vertragingen of verkeerde sensorlabels zijn verschenen.
+### Resultaten
+25-12-2025: Sensorwaarden werden correct en stabiel uitgelezen.
 
-Resultaten:
+### Conclusie
+I²C-communicatie werkt betrouwbaar.
 
-21-11-2025:
+---
 
-# Test 3: Dashboard: juiste eenheden en labels
+## Test 5: CO₂- en deeltjesmetingen gelijktijdig
 
-## Vraagstelling
+### Vraagstelling
+Kunnen beide sensoren tegelijk worden uitgelezen zonder dataverlies?
 
-Toont het dashboard de gemeten waarden duidelijk en correct, met de juiste eenheden en heldere labels/legenda voor CO₂- en deeltjesmetingen?  
-<br/>Meetopstelling en meetinstrumenten
+### Te verrichten handelingen
+1. Sluit beide sensoren tegelijk aan.
+2. Start systeem.
+3. Simuleer CO₂- en PM-verhoging.
+4. Observeer meetwaarden.
 
-Dynamic Translator Board met Raspberry Pi 4, aangesloten op:
+### Vast te leggen data
+- CO₂-waarden (ppm)  
+- PM-waarden (µg/m³)  
+- Eventuele fouten  
 
-- SCD4x - CO₂-sensor (I²C)
-- HM3301 - deeltjes-sensor (I²C)
+### Resultaten
+25-12-2025: Beide sensoren functioneerden gelijktijdig zonder verlies van data.
 
-Meetinstrumenten:
+### Conclusie
+Gelijktijdige metingen verlopen stabiel en correct.
 
-- Dashboard
+---
 
-## Externe voorwaarden
+## Changelog
 
-- De test is uitgevoerd in een gesloten ruimte bij kamertemperatuur (tussen 18-22 °C).
-- Luchtdruk en luchtstroom zijn constant gehouden.
-- Slechts twee personen aanwezig tijdens de test om externe invloed (adem, beweging) te minimaliseren.
-
-Te verrichten handelingen
-
-- Start het systeem met SCD4x + HM3301 aangesloten.
-- Open dashboard en noteer labels, eenheden en grafieknamen.
-- Varieer CO₂ kort (30-60 s uitademen richting sensor op ~30 cm).
-- Varieer PM kort (fijn stof door papier/kaart te schuren naast sensor).
-- Herhaal stappen 3-4 3 keer met korte pauzes.
-
-## Vast te leggen data
-
-- Labelnamen zoals getoond (bijv. _CO₂_, _PM2.5_).
-- Eenheden: CO₂ in ppm, PM in µg/m³.
-- Timestamps van metingen.
-- Waardereeks tijdens variaties.
-- Eventuele waarschuwingen/validaties.
-
-Analyse
-
-- Label/eenheid-check: komen label en eenheid exact overeen met specificatie (CO₂→ppm, PM→µg/m³)?
-- Leesbaarheid: zijn grafiek/tiles duidelijk (sensornaam, recente waarde, timestamp)?
-- Respons op variatie: stijgt CO₂ zichtbaar bij uitademen en stijgt PM zichtbaar bij stof?
-- Consistentie: vergelijk 3 herhalingen.
-
-<br/>
-
-# Test 4: Waardencontrole en geldige dataweergave
-
-## Vraagstelling
-
-Geeft het Dynamic Translator Board een duidelijke foutmelding wanneer een sensor niet correct is aangesloten, losraakt tijdens gebruik, of een onbekend type is?  
-<br/>Meetopstelling en meetinstrumenten
-
-Het experiment gebruikt een Pi 4 met het Dynamic Translator Board.  
-De firmware bevat foutafhandeling voor sensordetectie en communicatie.  
-Tijdens de test worden zowel goedgekeurde als onjuiste of defecte sensoren aangesloten.  
-<br/>Gebruikte componenten:
-
-- SCD4x - CO₂-sensor (I²C)
-- HM3301 - deeltjes-sensor (I²C)
-
-Meetinstrumenten:
-
-- Terminal voor foutmeldingen.
-
-## Externe voorwaarden
-
-- De test is uitgevoerd in een gesloten ruimte bij kamertemperatuur (tussen 18-22 °C).
-- Luchtdruk en luchtstroom zijn constant gehouden.
-- Slechts één persoon aanwezig tijdens de test om externe invloed (adem, beweging) te minimaliseren.
-
-Te verrichten handelingen
-
-- Start het systeem met SCD4x aangesloten → controleer correcte detectie.
-- Koppel de sensor los tijdens actieve meting.
-- Observeer de seriële monitor en terminal → noteer melding of foutcode.
-- Sluit daarna de sensor opnieuw aan → controleer herstel.
-- Herhaal de stappen met de HM3301-sensor.
-- Sluit vervolgens de dummy-sensor aan (onbekend type of fout ID).
-- Observeer of het systeem een foutmelding of waarschuwing toont.
-- Herhaal de volledige testreeks twee keer voor betrouwbaarheid.
-
-## Vast te leggen data
-
-- Type aangesloten sensor (of dummy)
-- Moment (timestamp) van loskoppeling en foutdetectie
-- Foutmeldingstekst of -code (bijv. _Sensor not detected_, _I²C timeout_)
-- Tijd tussen loskoppeling en foutmelding (in seconden)
-- Hersteltijd na opnieuw aansluiten
-- Aantal succesvolle foutmeldingen (van 3 pogingen)
-
-Analyse
-
-- Foutrespons-tijd: bereken gemiddelde tijd tussen sensorverlies en foutmelding.
-- Herstelgedrag: controleer of het systeem correct herstelt zodra de sensor terug is.
-- Consistentie: vergelijk 3 herhalingen; beoordeel of foutmeldingen stabiel en eenduidig zijn.
-- Onbekende sensor: controleer of er géén crash of verkeerde sensorherkenning optreedt.
-- Interface-controle: bekijk of de terminalmelding duidelijk is voor de gebruiker (kleur, tekst, leesbaarheid).
-
-# Test 5: Communicatie via I²C
-
-## Vraagstelling
-
-Kan het Dynamic Translator Board betrouwbaar communiceren met verschillende sensoren via I²C en worden de gemeten waarden correct uitgelezen en weergegeven op het terminal?  
-<br/>Meetopstelling en meetinstrumenten
-
-Het experiment wordt uitgevoerd op een Pi 4 in combinatie met het Dynamic Translator Board.  
-Aan elk communicatieprotocol wordt één sensor of testmodule gekoppeld om de werking te controleren.  
-<br/>Gebruikte sensoren:
-
-- SCD4x - CO₂-sensor (I²C)
-- HM3301 - deeltjes-sensor (I²C)
-
-Meetinstrumenten:
-
-- Pi 4
-- Laptop met terminal
-
-## Externe voorwaarden
-
-- De test is uitgevoerd in een gesloten ruimte bij kamertemperatuur (tussen 18-22 °C).
-- Luchtdruk en luchtstroom zijn constant gehouden.
-- Slechts één persoon aanwezig tijdens de test om externe invloed (adem, beweging) te minimaliseren.
-
-Te verrichten handelingen
-
-- - Sluit SCD4x aan op I²C-bus.
-    - Start systeem en observeer data in terminal.
-    - Controleer dat waarden elke 2 s worden bijgewerkt.
-
-## Vast te leggen data
-
-- Herkend protocol per test (I²C)
-- Gemeten waarden (CO₂ in ppm, PM in µg/m³, analoge spanning in V)
-- Verbindingsstatus (success/fail)
-- Eventuele foutmeldingen
-
-Analyse
-
-- Vergelijking per protocol: controleer of elk protocol meetgegevens correct verzendt en ontvangt.
-- Timinganalyse: bevestig dat datarates overeenkomen met verwachte frequentie (I²C 100-400 kHz, 9600-115200 bps).
-- Nauwkeurigheid: bereken afwijking tussen analoge spanning (ADC) en gemeten digitale waarde.
-- Robuustheid: beoordeel of communicatie herstelt na herstart of hot-swap.
-- Stabiliteit: check of geen fouten optreden bij langere metingen (>60 s).
-
-# Test 6: CO₂- en deeltjesmetingen gelijktijdig
-
-## Vraagstelling
-
-Kan het Dynamic Translator Board de CO₂-sensor (SCD4x) en de deeltjessensor (HM3301) tegelijkertijd uitlezen en de meetwaarden correct en onafhankelijk van elkaar naar het terminal sturen, zonder dataverlies of vertraging?  
-<br/>Meetopstelling en meetinstrumenten
-
-Het experiment gebruikt een Raspberry Pi 4 op het Dynamic Translator Board.  
-Beide sensoren worden tegelijk aangesloten:
-
-- SCD4x - CO₂-sensor (I²C)
-- HM3301 - PM-sensor (I²C)
-- De sensoren worden tijdens de test actief gehouden terwijl het terminal live meetwaarden toont.
-
-Meetinstrumenten:
-
-- Terminal
-- Laptop
-- Multimeter (controle voedingsspanning)
-
-## Externe voorwaarden
-
-- De test is uitgevoerd in een gesloten ruimte bij kamertemperatuur (tussen 18-22 °C).
-- Luchtdruk en luchtstroom zijn constant gehouden.
-- Slechts één persoon aanwezig tijdens de test om externe invloed (adem, beweging) te minimaliseren.
-
-Te verrichten handelingen
-
-- Sluit beide sensoren tegelijk aan op het Dynamic Translator Board.
-- Start de Raspberry Pi 4 en open het terminal of de seriële monitor.
-- Observeer dat beide sensoren automatisch worden herkend (type + protocol).
-- Laat het systeem gedurende 5 minuten metingen uitvoeren.
-- CO₂-test: adem gedurende 30 s in de richting van de sensor om stijgende waarden te simuleren.
-- PM-test: creëer licht stof (door papier te schuren) om PM-waarde te laten stijgen.
-- Herhaal de gehele procedure twee keer voor betrouwbaarheid.
-
-## Vast te leggen data
-
-- Herkende sensortypes en protocollen
-- CO₂-waarden (ppm)
-- PM-waarden (µg/m³)
-- Eventuele foutmeldingen of gemiste samples
-
-Analyse
-
-- Synchronisatiecontrole: vergelijk CO₂- en PM-metingen per tijdstempel.
-- Databetrouwbaarheid: tel het aantal ontvangen samples; bereken eventuele missende percentages.
-- Reactiviteit: stijgen CO₂- en PM-waarden wanneer respectievelijk adem/stof wordt toegevoegd?
-- Stabiliteit: controleer of de PCB niet herstart of fouten genereert bij gelijktijdig uitlezen.
-- Visuele controle: terminal toont beide sensoren met correcte labels en eenheden.
-
-# 
-
-Test 7: Sleep-modus en energieverbruik
-
-## Vraagstelling
-
-Kan het Dynamic Translator Board ongebruikte sensoren of subsystemen automatisch in sleep-modus zetten om energie te besparen, en is het verschil in stroomverbruik meetbaar?  
-<br/>Meetopstelling en meetinstrumenten
-
-Het experiment gebruikt de standaardopstelling van het Dynamic Translator Board met Raspberry Pi 4, waarop twee sensoren zijn aangesloten (CO₂ en PM).  
-Het systeem is verbonden met een USB-voeding via een stroommeetinstrument (USB current meter of multimeter in serie).  
-De firmware bevat een functie die niet-actieve sensoren uitschakelt of in slaapstand zet.  
-
-Gebruikte middelen:
-
-- Raspberry Pi 4 + Dynamic Translator Board
-- SCD4x CO₂-sensor (I²C)
-- HM3301 PM-sensor (/I²C)
-- Laptop
-- Firmware met sleepMode() functie
-
-Meetinstrumenten:
-
-- USB current meter met mA-nauwkeurigheid
-- Seriële monitor voor statusmeldingen ("Sleep active", "Wake up")
-- Stopwatch of loggingtimer
-
-## Externe voorwaarden
-
-- De test is uitgevoerd in een gesloten ruimte bij kamertemperatuur (tussen 18-22 °C).
-- Luchtdruk en luchtstroom zijn constant gehouden.
-- Slechts één persoon aanwezig tijdens de test om externe invloed (adem, beweging) te minimaliseren.
-
-Te verrichten handelingen
-
-- Start het systeem met beide sensoren actief.
-- Laat het systeem 2 minuten draaien in actieve modus.
-- Noteer de stroomafname in mA.
-- Activeer daarna de sleep-modus via code (automatisch of handmatig via knop/commando).
-- Wacht 30 seconden en noteer opnieuw de stroomafname.
-- Herhaal de meting twee keer voor betrouwbaarheid.
-- Controleer in de seriële monitor of de status "Sleep active" verschijnt.
-- Schakel het systeem terug naar actieve modus en observeer of de stroom toeneemt ("Wake up").
-
-## Vast te leggen data
-
-| Meting | Modus | Stroomverbruik (mA) | Tijdstip | Statusmelding | Opmerking |
-| --- | --- | --- | --- | --- | --- |
-| 1   | Actief | ... | ... | ... | ... |
-| 2   | Sleep | ... | ... | ... | ... |
-| 3   | Actief | ... | ... | ... | ... |
-
-- Gemeten spanningsniveau (V)
-- Eventuele foutmeldingen of vertragingen bij terugkeer naar actieve modus
-
-Analyse
-
-- Gemiddelde berekenen: bereken het gemiddelde stroomverbruik voor zowel actieve als slaapmodus.
-- Percentage besparing: bereken energiebesparing met:
-- Controle functionaliteit: controleer dat het systeem in slaapstand geen metingen uitvoert.
-- Herstelgedrag: controleer dat het systeem correct terugkeert naar actieve modus.
-- Stabiliteit: bevestig dat er geen crash of reset optreedt tijdens de overgang.
-
-# Changelog
-
-| Wijzigingen | Versie | Datum |     |
-| --- | --- | --- |     |
-| Eerste versie test-plan | 1.0 | 10-10-2025 |
-| Een test verwijdert en communicatieprotocollen bijgewerkt n.a.v. verandering scope | 2.0 | 21-11-2025 |
+| Versie | Datum | Wijziging |
+|------|------|----------|
+| 1.0 | 10-10-2025 | Eerste versie testplan |
+| 2.0 | 21-11-2025 | Scope aangepast |
+| 3.0 | 25-12-2025 | Testen uitgevoerd en resultaten toegevoegd |
