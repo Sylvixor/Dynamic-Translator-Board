@@ -1,4 +1,12 @@
-# Experimenteel Onderzoek
+# Experimenteel onderzoek
+
+## DYNAMIC TRANSLATOR BOARD
+
+**SCOTT VAN DER HEIJDEN** (1103349)  
+**ARDA KESKIN** (1096673)  
+**TIJMEN GROENEVELT** (1103197)  
+**OMAR MANSOUR** (1051322)
+
 
 ## Experiment protocol 1 – Stabiliteit en precisie
 
