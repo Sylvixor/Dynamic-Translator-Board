@@ -21,7 +21,8 @@ DTB/
 │   ├── Probleemomschrijving.docx
 │   ├── Requirementsanalyse.docx
 │   ├── Risicoanalyse.docx
-│   └── Testrapport.docx
+│   ├── Testrapport.docx
+│   └── Gebruikersonderzoek.docx
 ├── IMG/
 │   ├── Architectuur_diagram.png
 │   └── Flowchart.png
