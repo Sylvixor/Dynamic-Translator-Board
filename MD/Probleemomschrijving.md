@@ -1,52 +1,58 @@
-Scott van der heijden - Arda keskin - omar mansour - tijmen groenevelt
+# Context en Probleemstelling  
+## Dynamic Translator Board
 
-13 november 2025
+---
 
-Probleemomschrijving
+## Context
+In grote steden komt overlast in verschillende vormen veel voor, zoals geluidsoverlast, luchtvervuiling en lichtvervuiling. Deze vormen van overlast worden momenteel vaak weergegeven met verouderde modellen en grafieken, waardoor de resultaten niet altijd accuraat zijn.
 
-Dynamic translator board
+Het doel is dat particulieren deze vormen van overlast zelf kunnen aantonen om beleidsmakers of overheden aan te zetten tot actie. Hiervoor wordt de Dynamic Translator Board (DTB) module ingezet, die binnen dit project verder wordt ontwikkeld.
 
-**Context**
+---
 
-In grote steden is er een hoop overlast in verschillende vormen. Denk hierbij aan bijvoorbeeld geluidsoverlast, luchtvervuiling of lichtvervuiling. Dit wordt allemaal nog met oude grafieken berekend hoe dit er ongeveer in de huidige dag uit zou zien, maar dat is niet altijd accuraat.
+## Bedrijf
+Het project wordt aangeboden door **Cyrb**, een startup uit Den Haag die is opgericht in het voorjaar van 2020. Cyrb richt zich op het meten en analyseren van geluidsoverlast in stedelijke omgevingen met behulp van sensoren, gecombineerd met dashboards voor bewoners en ondernemers.
 
-Het is de bedoeling dat een particulier zo'n overlast zelf aan kan tonen om de regerering hier iets aan te laten doen. Dit kan dan gedaan worden met de Dynamic Translator Board (DTB) module die wij verder moeten ontwikkelen.
+Bij een project in Scheveningen heeft Cyrb bijvoorbeeld ongeveer tien sensoren geplaatst om geluid en verkeersgerelateerde drukte te monitoren. Cyrb zet hierbij niet alleen techniek in door simpelweg sensoren te plaatsen, maar werkt vanuit co-creatie met betrokken partijen zoals omwonenden en ondernemers. Door gegevens zoals geluidsniveaus, verkeersintensiteit, windrichting en luchtvochtigheid te combineren, kan een zogenaamde *geluidsverwachting* worden opgesteld, zodat betrokkenen beter kunnen anticiperen op overlast.
 
-**Bedrijf**
+---
 
-Het bedrijf dat ons project verschaft is Cyrb. Cyrb is een startup uit Den Haag, opgericht in het voorjaar van 2020, het bedrijf richt zich op het meten en analyseren van geluidsoverlast in stedelijke omgevingen met behulp van sensoren, gecombineerd met dashboards voor bewoners en ondernemers. Bij een project in Scheveningen plaatste Cyrb bijvoorbeeld ongeveer 10 sensoren om geluid en verkeer gerelateerde drukte te monitoren.
+## Probleemstelling
+De Dynamic Translator Board module bestaat in de basis al en is door Cyrb zelf ontworpen. De hardware bevat functionerende sensoraansluitingen en sensoren, zoals een microfoon. Hoewel de module technisch vrijwel marktklaar is, vormt de gebruikersvriendelijkheid een groot knelpunt.
 
-Het uitgangspunt is om niet alleen techniek in te zetten ("zomaar sensoren plaatsen"), maar echt het probleem te begrijpen door co-creatie met betrokkenen zoals omwonenden en ondernemers. Het doel is om gegevens zoals geluidsniveaus, verkeersintensiteit, windrichting of luchtvochtigheid te combineren om een "geluidsverwachting" te geven - zodat betrokkenen beter kunnen anticiperen.
+Voor een gemiddelde gebruiker is het momenteel nauwelijks mogelijk om zelfstandig aanpassingen te doen aan de DTB, zoals het wisselen van sensoren of het inzien van meetdata, zonder uitgebreide technische kennis. Hierdoor is de DTB niet *plug-and-play* en onvoldoende toegankelijk voor eindgebruikers.
 
-**Probleemstelling**
+---
 
-De module bestaat in feite al, deze is ontworpen door Cyrb zelf en heeft al volledig functionerende sensoraansluitingen en sensoren zoals bijvoorbeeld een microfoon. Alhoewel deze module dus technisch gezien vrijwel klaar voor de markt is, zit het grootste probleem in de gebruikersvriendelijkheid. Voor een gemiddelde gebruiker is het vrijwel onmogelijk om zelf aanpassingen te maken op de DTB, denk hierbij aan het wisselen van sensoren of de data zelf in te zien, zonder dat deze klant hoge algemene technische kennis heeft. Het grootste probleem waar Cyrb dus tegenaan loopt is dat de DTB niet "Plug and Play" is en daardoor niet gebruikersvriendelijk genoeg is.
+## Opdrachtomschrijving
+Het doel van Cyrb met dit project is het leggen van een basis voor het oplossen van het gebruikersvriendelijkheidsprobleem. De scope van het project is bewust flexibel gehouden en afhankelijk van de haalbaarheid van individuele taken.
 
-**Opdrachtomschrijving**
+De primaire opdracht is het modulair en eenvoudig uitwisselbaar maken van sensoren, zodat ook gebruikers zonder technische kennis hiermee kunnen werken. Hiervoor moet zowel de software als mogelijk de huidige hardware worden geanalyseerd om te bepalen waar aanpassingen noodzakelijk zijn.
 
-Het doel van Cyrb bij het overhandigen van ons project is dat er een begin gemaakt wordt aan de oplossing voor het gebruikersvriendelijkheidsprobleem. Er is duidelijk aangegeven dat de scope van dit project heel flexibel is afhankelijk van hoe haalbaar de individuele taken blijken te zijn. De opdracht begint met de sensoren modulair en makkelijk uitwisselbaar te maken voor klanten zonder technische kennis. Tot dit doeleinde moet er gekeken worden naar de code en mogelijk de huidige hardware om te identificeren waar aanpassingen doorgevoerd kunnen worden. Als binnen het projecttermijn voldaan wordt aan deze eisen zijn er mogelijke uitbreidingen op het systeem bedacht om verder aan de probleemstelling te werken, denk hierbij aan bijvoorbeeld een interactief dashboard.
+Indien binnen de projectperiode aan deze kernvereisten wordt voldaan, zijn uitbreidingen mogelijk. Hierbij kan gedacht worden aan aanvullende functionaliteiten zoals een interactief dashboard om meetdata inzichtelijk te maken.
 
-**(Onderzoeks)vragen**
+---
 
-_Hoe kan er automatische sensor detectie plaatsvinden?_
+## (Onderzoeks)vragen
 
-Deze onderzoeksvraag wordt behandeld in het document "Modulariteitsonderzoek".
+**Hoe kan automatische sensordetectie plaatsvinden?**  
+Deze onderzoeksvraag wordt behandeld in het document *Modulariteitsonderzoek*.
 
-_Wat voor sensoren zijn er verplicht om toe te kunnen passen?_
+**Welke sensoren zijn verplicht om toe te kunnen passen?**  
+Deze vraag wordt beantwoord in het document *Requirementsanalyse*.
 
-Deze onderzoeksvraag wordt beantwoord in het document "Requirementsanalayse".
+**Hoe kan een programma naar de Raspberry Pi worden geflasht?**  
+Deze vraag is beantwoord aan de hand van documentatie van de Raspberry Pi Foundation:  
+*Getting started with Raspberry Pi Pico-series microcontrollers* (2021).
 
-_Hoe kunnen we zelf een programma naar de Pi flashen?_
+**Hoe zit het geleverde product qua documentatie en code in elkaar?**  
+Deze vraag wordt beantwoord in het document *Requirements + User Stories*.
 
-Deze vraag is beantwoord met behulp van het volgende document: Raspberry Pi Foundation. (2021, 26 januari). _Getting started with Raspberry Pi Pico-series microcontrollers_ (PDF). [https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf?utm_source=chatgpt.com)
+---
 
-_Hoe zit het geleverde product wat betreft documentatie en code in elkaar?_
+## Changelog
 
-Deze vraag wordt beantwoord in het document: "Requirements+User_Stories"
-
-**Changelog**
-
-| Versie? | Wanneer? | Wat? |
-| --- | --- | --- |
-| 1.1 | 12/11/2025 | Onderzoeksvragenuitbreiding |
-|     |     |     |
+| Versie | Datum | Wijziging |
+|------|------|----------|
+| 1.0 | 12-11-2025 | Uitbreiding onderzoeksvragen |
+| 2.0 | 26-01-2026 | Toevoeging studentnummer |
