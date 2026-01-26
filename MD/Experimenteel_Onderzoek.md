@@ -23,7 +23,7 @@ De Raspberry Pi is verbonden met een laptop waarop het volgende codebestand is v
 Het experiment vindt plaats in een gesloten ruimte met een temperatuur tussen de 18 en 22 °C, met maximaal twee personen aanwezig. Tijdens de test mogen geen andere I²C-apparaten op dezelfde bus zijn aangesloten dan de te testen sensor.
 
 ### Te verrichten handelingen
-![Referentiefoto aansluiting sensor](VOEG_HIER_REFERENTIEFOTO_TOE)
+![Referentiefoto aansluiting sensor]
 
 1. De Raspberry Pi wordt uitgeschakeld.
 2. De sensor wordt aangesloten volgens de referentiefoto.
