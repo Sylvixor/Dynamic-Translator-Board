@@ -1,98 +1,94 @@
-Onderzoeksverslag Modulariteit
+# Onderzoeksverslag Modulariteit  
+## Dynamic Translator Board
 
-Dynamic Translator Board
+**Scott van der Heijden** (1103349)  
+**Arda Keskin** (1096673)  
+**Tijmen Groenevelt** (1103349)  
+**Omar Mansour** (1051322)  
 
-Scott Van Der Heijden (1103349), Tijmen Groenevelt (1058554)  
-Arda Keskin (1096673) ,Omar Mansour (1051322)
+*Datum: 10-10-2025*
 
-10-10-2025
+---
 
-Inhoud
+## Inhoud
+1. Samenvatting  
+2. Inleiding  
+3. Theoretisch kader modulariteit  
+4. Methode toepassing modulariteit  
+5. Resultaten implementatie project  
+6. Conclusie  
+7. Literatuurlijst  
+8. Changelog  
 
-[Samenvatting 3](#_Toc216440093)
+---
 
-[Inleiding 3](#_Toc216440094)
+## Samenvatting
+Dit document richt zich op het concept modulariteit en onderzoekt, vanuit verschillende invalshoeken, of modulariteit geschikt is voor het Dynamic Translator Board (DTB) project. Modulariteit wordt eerst benaderd vanuit een theoretisch perspectief, waarna wordt gekeken naar bestaande toepassingen binnen de techniek. Hierbij komen bedrijven zoals Turck naar voren, die modulariteit toepassen in hardwarecomponenten van grotere machines om onderhoud en aanpasbaarheid te verbeteren.
 
-[Theoretisch kader modulariteit 4](#_Toc216440095)
+De onderzoeksresultaten worden vervolgens vergeleken met de mogelijkheden binnen het DTB-project. Hieruit volgen twee mogelijke implementatiestrategieën. De eerste optie maakt gebruik van pull-up resistors om de status van aangesloten sensoren te bepalen, wat echter extra hardware binnen de behuizing vereist. De tweede, meer toegankelijke optie is het gebruik van interne I²C-adressen voor het identificeren van sensoren. Deze methode wordt als meest geschikt beschouwd vanwege de schaalbaarheid en digitale betrouwbaarheid.
 
-[Methode toepassing modulariteit 5](#_Toc216440096)
+---
 
-[Resultaten implementatie project 6](#_Toc216440097)
+## Inleiding
+Het project Dynamic Translator Board heeft als doel het mogelijk maken om verschillende sensoren te gebruiken zonder dat de gebruiker over technische kennis hoeft te beschikken. De sensoren moeten volgens een *plug-and-play* principe aangesloten kunnen worden, waarbij het magnetisch opklikken van een sensor voldoende is om deze operationeel te maken.
 
-[Conclusie 7](#_Toc216440098)
+Om dit te realiseren is een bepaald niveau van modulariteit binnen het systeem noodzakelijk. Dit leidt tot de centrale onderzoeksvraag:  
+**Hoe kan modulariteit effectief worden geïmplementeerd binnen de context van het Dynamic Translator Board project?**
 
-[Literatuurlijst 8](#_Toc216440099)
+Om deze vraag te beantwoorden zijn de volgende deelvragen opgesteld:
+- Hoe wordt modulariteit theoretisch gedefinieerd en hoe is dit toepasbaar op het project?
+- Waar wordt modulariteit in moderne technologie toegepast en is dit relevant voor het DTB-project?
+- Welke vormen van modulariteit zijn mogelijk en welke methode sluit het best aan bij dit project?
 
-[Changelog 9](#_Toc216440100)
+---
 
-# Samenvatting
+## Theoretisch kader modulariteit
+Modulariteit wordt gedefinieerd als:  
 
-# Inleiding
+> “De mate waarin een systeem of computerprogramma is opgebouwd uit afzonderlijke eenheden (modules), die elk een eigen functie vervullen. Een modulair systeem kan worden aangepast of uitgebreid met minimale aanpassingen aan het geheel.” [1]
 
-Het project Dynamic Translator Board gaat om het gebruik kunnen maken van verschillende sensoren, zonder dat de gebruiker van het apparaat technische kennis nodig heeft.
+Deze definitie sluit nauw aan bij de doelstelling van het DTB-project. Om een *plug-and-play* ervaring te realiseren moeten sensoren onafhankelijk van elkaar kunnen worden aangesloten, losgekoppeld en uitgelezen, zonder dat wijzigingen in de software nodig zijn door de gebruiker.
 
-Deze sensoren moeten met een "plug-and-play" principe aangesloten kunnen worden. Het magnetisch opklikken van een sensor is alles wat een gebruiker zou moeten doen om het werkend te krijgen. Verder is alles wat er vereist wordt van de gebruiker het bekijken van de informatie die de sensoren versturen.
+---
 
-Om dit te bereiken, moet er een bepaald niveau van modulariteit in het apparaat zitten. De vraag die hierbij komt opzetten is: Hoe valt dit te implementeren in de context van dit project?
+## Methode toepassing modulariteit
+Hoewel modulair gebruik van sensoren nog beperkt wordt toegepast, zijn er wel bestaande voorbeelden binnen de technologie. Zo heeft Insyte Technology [2] een framework ontwikkeld waarop verschillende sensoren aangesloten kunnen worden die onderling communiceren en centraal uitgelezen worden. Dit framework wordt onder andere toegepast bij fijnstofmetingen, geurdetectie en bodemvochtmetingen.
 
-Om het antwoord daar op te vinden moet er eerst antwoord komen op de volgende onderzoeksvragen:
+Een ander voorbeeld is het bedrijf Turck [3], dat zich richt op modulariteit binnen industriële machines. Door modulaire ontwerpen wordt onderhoud vereenvoudigd en kunnen machines flexibeler gecombineerd worden.
 
-- Hoe wordt modulariteit theoretisch gedefinieerd en hoe is dit van toepassing op het project?
-- Waar wordt modulariteit in moderne technologie al gebruikt en heeft dit een relevante toepassing voor ons project?
-- Op welke manieren wordt modulariteit zoal toegepast en welke methode is voor het project het meest van toepassing?
+Deze voorbeelden tonen aan dat modulariteit vooral via doordacht PCB-ontwerp wordt gerealiseerd, waarbij rekening wordt gehouden met communicatieprotocollen, microcontrollers en de fysieke gebruiksomgeving. Factoren zoals beschikbare ruimte en efficiëntie spelen hierbij een belangrijke rol.
 
-# Theoretisch kader modulariteit
+---
 
-De directe definitie van modulariteit is als volgt:
+## Resultaten implementatie project
+Uit het onderzoek komen twee mogelijke methoden naar voren om modulariteit binnen het Dynamic Translator Board te implementeren.
 
-"De mate waarin een systeem of een computerprogramma is opgebouwd uit afzonderlijke eenheden (modules), die elk een eigen functie vervullen. Een modulair systeem of programma kan worden aangepast of uitgebreid met minimale aanpassingen aan het totaal." \[1\]
+De eerste methode is een analoge oplossing waarbij per sensor een unieke weerstand wordt toegevoegd. Via een ADC kan deze weerstand worden uitgelezen, waardoor het systeem kan bepalen welke sensor is aangesloten. Deze methode vereist extra hardware en is gevoelig voor meetafwijkingen.
 
-Uit deze definitie volgt de vraag wat het toevoegen van modulariteit bijdraagt aan dit project?
+De tweede methode is een digitale oplossing op basis van I²C-adresdetectie [4]. Hierbij worden aangesloten sensoren automatisch herkend door hun unieke I²C-adressen. Deze methode is minder foutgevoelig en beter schaalbaar. Een aandachtspunt hierbij is dat niet alle sensoren standaard I²C gebruiken en dat adresconflicten kunnen optreden.
 
-Zoals in de introductie al benoemd was, moet er een "plug-and-play" principe ontstaan. Dit principe is dus verbonden aan modulariteit, omdat de sensoren onafhankelijk van elkaar aangesloten, losgekoppeld en uitgelezen moeten kunnen worden. Dit moet kunnen gebeuren zonder dat er aan het achterliggende programma een aanpassing gemaakt hoeft te worden door de gebruiker.
+---
 
-# Methode toepassing modulariteit
+## Conclusie
+Uit dit onderzoek blijkt dat modulariteit een haalbare en waardevolle ontwerpkeuze is voor het Dynamic Translator Board. Modulariteit maakt een *plug-and-play* gebruikerservaring mogelijk en sluit direct aan bij de doelstelling om het systeem toegankelijk en gebruiksvriendelijk te maken.
 
-Het principe van modulair gebruik van sensoren wordt nog niet veel toegepast, maar er zijn zeker voorbeelden te vinden van algemene toepassing modulariteit binnen moderne technologie.
+Hoewel een analoge identificatiemethode met weerstanden technisch uitvoerbaar is, brengt deze extra hardware-eisen en potentiële meetfouten met zich mee. De digitale I²C-gebaseerde methode biedt een schaalbaardere en toekomstbestendige oplossing, mits er zorgvuldig wordt omgegaan met adresbeheer en sensorselectie.
 
-Zo is er bijvoorbeeld het bedrijf Insyte Technology \[2\]. Zij hebben een framework ontworpen waar verschillende sensoren op aangesloten kunnen worden. Door gebruik van dit framework kunnen de aangesloten sensoren met elkaar communiceren en ook daarnaast ook uitgelezen worden.
+Op basis van de onderzoeksresultaten wordt geconcludeerd dat de I²C-gebaseerde aanpak het meest geschikt is voor het Dynamic Translator Board project.
 
-Deze framework hebben ze al toegepast op verschillende situaties, zoals bij fijnstofmetingen op bouwterreinen, geurdetectie bij waterzuiveringssystemen en bodemvochtdetectie voor groenprojecten. Dit zijn een aantal voorbeelden binnen de grote hoeveelheid toepassingsmogelijkheden van het framework ontwerp.
+---
 
-Een ander bedrijf die zich bezighoud met modulariteit is Turck \[3\]. Zij zijn voornamelijk bezig met het modulair maken van grotere machines, zodat hierin aanpassingen gemaakt kunnen worden wanneer dit nodig is. Ook is onderhoud hiermee makkelijker, aangezien er bij problemen makkelijker geïsoleerd kan worden waar in de machine het probleem terug te vinden is. Ook gebruiken ze het om verschillende machines makkelijker te combineren en samen te laten werken.
+## Literatuurlijst
+1. Nederlandse Encyclopedie – Modulariteit  
+2. Insyte Technology  
+3. Turck  
+4. Adafruit – I²C address detection  
 
-Deze voorbeelden laat zien dat modulariteit wel al voorkomt in vergelijkbare contexten, maar dit zijn vaak relatief kleine bedrijven die zich hier mee bezig houden. Daarnaast wordt het concept modulariteit ook alleen nog in de industrie toegepast tot nu toe, waarbij het project van Cyrb de nadruk op commerciëel gebruik wil leggen.
+---
 
-Modulariteit wordt klaarblijkelijk over het algemeen toegepast door het juist ontwerpen van een PCB (printplaat) voor de toepassende doeleinden van een apparaat. Op deze printplaat wordt rekening gehouden met de mogelijke communicatieprotocollen van de sensoren en van de microcontroller waar het uiteindelijk aan verbonden wordt.
+## Changelog
 
-Ook wordt er tijdens het ontwerpen gekeken naar de gebruiksomgeving. Dit heeft te maken met de behuizing die om de PCB heen gemaakt wordt en samen met de sensoren die er op aangesloten zitten moet kunnen passen. Als het in een omgeving met gelimiteerde ruimte komt, moet het ontwerp natuurlijk hier dusdaanig op aangepast worden. Wanneer er geen eisen aan omvang hangen, kan er bijvoorbeeld meer naar efficiëntie op andere gebieden gekeken worden tijdens het ontwerpen.
-
-# Resultaten implementatie project
-
-Er blijken uit het onderzoek een aantal mogelijkheden te zijn om modulariteit te implementeren binnen het dynamic translator board project.
-
-De eerste optie is het gebruik van verschillende weerstanden per sensor. Dit is een analoge methode. Deze methode vereist dat er een extra weerstand tussen twee pinnen wordt toegevoegd. Deze weerstand kan vervolgens door middel van een ADC (Analog to Digital Converter) herkent worden, waardoor het programma kan detecteren welke sensor er aanwezig is.  
-Deze methode vereist een extra weerstand per sensor. Ook moeten alle sensoren correct kunnen werken met de ADC, gezien deze wel eerst in moet lezen wat er verbonden wordt. Ook is de kans op kleine meetfouten groter, omdat het een analoge oplossing is.
-
-De tweede optie is het gebruik van interne I2C adressen. Dit is een volledig digitale methode en elimineert dus de mogelijkheid op analoge meetfouten. \[4\]  
-Voor deze methode is het belangrijk dat alle sensoren via I2C communiceren. De gebruikte sensoren hebben allemaal een apart adres, en deze kan gescanned worden door de microcontroller wanneer de sensor aangesloten wordt. Hierdoor is het mogelijk om te detecteren welke sensoren er aanwezig zouden zijn, en op basis van deze informatie de juiste code te implementeren.  
-De uitdaging hier in ligt dat niet alle sensoren standaard I2C gebruiken als communicatiemethode. Ook kan het zijn dat bepaalde sensoren vaste adressen hebben die mogelijk onderling overlappen, hier moet in de ontwikkelingsfase dus goed op gelet worden omdat dit anders voor problemen in de detectie kan zorgen.
-
-# Conclusie
-
-# Literatuurlijst
-
-\[1\] [Nederlandse Encyclopedie](https://www.encyclo.nl/begrip/modulariteit)
-
-\[2\] [Insyte Technology](https://insyte-technology.com/onze-aanpak)
-
-\[3\] [Turck](https://www.turck.nl/nl/modulaire-machines-36981.php#:~:text=Het%20modulariteitsprincipe,van%20lage%20tot%20absolute%20modulariteit.)
-
-\[4\] [Adafruit on I2C adress detection](https://learn.adafruit.com/scanning-i2c-addresses/raspberry-pi)
-
-# Changelog
-
-| **Datum** | **Change** |
-| --- | --- |
-| 10/10/25 | Document aangemaakt, begonnen met schijven |
-| 27/10/25 | Impelementatie geschreven |
+| Datum | Wijziging |
+|------|---------|
+| 10-10-2025 | Document aangemaakt, start onderzoek |
+| 27-10-2025 | Implementatie uitgewerkt |
