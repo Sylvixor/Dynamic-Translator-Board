@@ -16,20 +16,22 @@ DTB/
 ├── LICENSE
 ├── README.md
 ├── DOCX/
-|   ├── Experimenteel Onderzoek.docx
-|   ├── Onderzoek Modulariteit.docx
-|   ├── Probleemomschrijving.docx
-|   ├── Requirementsanalyse.docx
-|   ├── Risicoanalyse.docx
-|   └── Testrapport.docx
+│   ├── Experimenteel Onderzoek.docx
+│   ├── Onderzoek Modulariteit.docx
+│   ├── Probleemomschrijving.docx
+│   ├── Requirementsanalyse.docx
+│   ├── Risicoanalyse.docx
+│   └── Testrapport.docx
 ├── IMG/
+│   ├── Architectuur_diagram.png
 │   └── Flowchart.png
 ├── MD/
-|   ├── Experimenteel_Onderzoek.md
-|   ├── Onderzoek_Modulariteit.md
-|   ├── Probleemomschrijving.md
-|   ├── Requirementsanalyse.md
-|   ├── Risicoanalyse.md
-|   └── Testrapport.md
+│   ├── Experimenteel_Onderzoek.md
+│   ├── Onderzoek_Modulariteit.md
+│   ├── Probleemomschrijving.md
+│   ├── Requirementsanalyse.md
+│   ├── Risicoanalyse.md
+│   └── Testrapport.md
 └── .gitignore
+
 ```
