@@ -5,8 +5,10 @@
 
 13-11-2025
 
-Scott Van Der Heijden (1103349), Tijmen Groenevelt (1058554)  
-Arda Keskin (1096673) ,Omar Mansour (1051322)  
+**Scott van der Heijden** (1103349)  
+**Arda Keskin** (1096673)  
+**Tijmen Groenevelt** (1103349)  
+**Omar Mansour** (1051322)   
 
 **1\. Inleiding**
 
