@@ -17,6 +17,7 @@ DTB/
 ├── README.md
 ├── DOCX/
 │   ├── Experimenteel Onderzoek.docx
+│   ├── Kapstokdocument.docx.docx
 │   ├── Onderzoek Modulariteit.docx
 │   ├── Probleemomschrijving.docx
 │   ├── Requirementsanalyse.docx
@@ -28,6 +29,7 @@ DTB/
 │   └── Flowchart.png
 ├── MD/
 │   ├── Gebruikersonderzoek.md
+│   ├── Kapstokdocument.docx.md
 │   ├── Experimenteel_Onderzoek.md
 │   ├── Onderzoek_Modulariteit.md
 │   ├── Probleemomschrijving.md
