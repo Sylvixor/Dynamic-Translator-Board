@@ -27,6 +27,7 @@ DTB/
 │   ├── Architectuur_diagram.png
 │   └── Flowchart.png
 ├── MD/
+│   ├── Gebruikersonderzoek.md
 │   ├── Experimenteel_Onderzoek.md
 │   ├── Onderzoek_Modulariteit.md
 │   ├── Probleemomschrijving.md
