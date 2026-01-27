@@ -39,3 +39,8 @@ DTB/
 └── .gitignore
 
 ```
+## Presentaties
+
+De presentatiebestanden zijn vanwege hun bestandsgrootte niet direct in de repository opgenomen.  
+Deze zijn beschikbaar via de **Tags / Releases** van deze repository.
+
