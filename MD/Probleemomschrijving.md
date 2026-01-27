@@ -1,6 +1,12 @@
 # Context en Probleemstelling  
 ## Dynamic Translator Board
 
+
+**Scott van der Heijden** (1103349)  
+**Arda Keskin** (1096673)  
+**Tijmen Groenevelt** (1103349)  
+**Omar Mansour** (1051322)  
+
 ---
 
 ## Context
