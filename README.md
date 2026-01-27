@@ -9,6 +9,11 @@ Dit is de repository voor project 5/6, de dynamic translator board.
 - Tijmen Groenevelt ( TijmenHR )
 - Omar Mansour ( alazaz12 )
 
+## Presentaties
+
+De presentatiebestanden zijn vanwege hun bestandsgrootte niet direct in de repository opgenomen.  
+Deze zijn beschikbaar via de **Tags / Releases** van deze repository.
+
 ## Bestandsstructuur
 
 ```
@@ -39,8 +44,4 @@ DTB/
 └── .gitignore
 
 ```
-## Presentaties
-
-De presentatiebestanden zijn vanwege hun bestandsgrootte niet direct in de repository opgenomen.  
-Deze zijn beschikbaar via de **Tags / Releases** van deze repository.
 
