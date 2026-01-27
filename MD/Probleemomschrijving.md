@@ -39,7 +39,7 @@ Indien binnen de projectperiode aan deze kernvereisten wordt voldaan, zijn uitbr
 
 ---
 
-## (Onderzoeks)vragen
+## (Onderzoeks) vragen
 
 **Hoe kan automatische sensordetectie plaatsvinden?**  
 Deze onderzoeksvraag wordt behandeld in het document *Modulariteitsonderzoek*.
