@@ -31,6 +31,7 @@ DTB/
 │   └── Gebruikersonderzoek.docx
 ├── IMG/
 │   ├── Architectuur_diagram.png
+│   ├── Poster.png
 │   └── Flowchart.png
 ├── MD/
 │   ├── Gebruikersonderzoek.md
@@ -41,6 +42,12 @@ DTB/
 │   ├── Requirementsanalyse.md
 │   ├── Risicoanalyse.md
 │   └── Testrapport.md
+├── VID/
+│   ├── Test2.mp4
+│   ├── Test3.mp4
+│   ├── Test4.mp4
+│   ├── Test5.mp4
+│   └── Test6.mp4
 └── .gitignore
 
 ```
