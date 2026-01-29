@@ -1,0 +1,46 @@
+{
+    "3" : {
+        "I2C_ADDRESS" : 10,
+        "MEASURE_INTERVAL" : 10, 
+        "SENSE_INTERVAL" : 2,
+        "MODULE_PRIORITY" : 1,
+        "SENSOR_PREPARE_TIME" : 0,
+        "DATA_LENGTH" : 10,
+        "DATA_POINTS" : 3,
+        "SHARED_ADDRESS" : false,
+        "TYPE" : "DATA_SENSOR_AERO_HM3301"
+    },
+    "4" : {
+        "I2C_ADDRESS" : 11,
+        "MEASURE_INTERVAL" : 10, 
+        "SENSE_INTERVAL" : 2,
+        "MODULE_PRIORITY" : 1,
+        "SENSOR_PREPARE_TIME" : 0,
+        "DATA_LENGTH" : 10,
+        "DATA_POINTS" : 3,
+        "SHARED_ADDRESS" : false,
+        "TYPE" : "DATA_SENSOR_AERO_SCD4X"
+    },
+    "5" : {
+        "I2C_ADDRESS" : 12,
+        "MEASURE_INTERVAL" : 10, 
+        "SENSE_INTERVAL" : 2,
+        "MODULE_PRIORITY" : 1,
+        "SENSOR_PREPARE_TIME" : 0,
+        "DATA_LENGTH" : 10,
+        "DATA_POINTS" : 3,
+        "SHARED_ADDRESS" : false,
+        "TYPE" : "DATA_SENSOR_COMBINED_SCD4X_HM3301"
+    },
+    "99" : {
+        "I2C_ADDRESS" : 99,
+        "MEASURE_INTERVAL" : 5, 
+        "SENSE_INTERVAL" : 2,
+        "MODULE_PRIORITY" : 1,
+        "SENSOR_PREPARE_TIME" : 0,
+        "DATA_LENGTH" : 10,
+        "DATA_POINTS" : 2,
+        "SHARED_ADDRESS" : false,
+        "TYPE" : "DATA_SENSOR_AERO_TEST"
+    }
+}

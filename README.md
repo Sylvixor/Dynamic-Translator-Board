@@ -9,15 +9,9 @@ Dit is de repository voor project 5/6, de dynamic translator board.
 - Tijmen Groenevelt ( TijmenHR )
 - Omar Mansour ( alazaz12 )
 
-## Presentaties
+## Kapstokdocument
 
-De presentatiebestanden zijn vanwege hun bestandsgrootte niet direct in de repository opgenomen.  
-Deze zijn beschikbaar via de **Tags / Releases** van deze repository.
-
-## Codebestanden
-
-De Codebestanden zijn vanwege hun bestandsgrootte niet direct in de repository opgenomen.  
-Deze zijn beschikbaar via de **Tags / Releases** van deze repository.
+In ``Kapstokdocument.docx`` staat de doel en scope, beslislogistiek, projectterminologie en het documentstructuur. Zie dit bestand voor algemene informatie over ons project.
 
 ## Bestandsstructuur
 

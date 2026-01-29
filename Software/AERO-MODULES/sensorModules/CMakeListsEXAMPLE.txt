@@ -1,0 +1,44 @@
+cmake_minimum_required(VERSION 3.25.0)
+
+# You need to include a .cmake file which has configurations for the Pico SDK
+# It is located here: path-to-pico-sdk/pico_sdk_init.cmake
+include(external/pico-sdk/pico_sdk_init.cmake)
+
+project(qtpySensorModule C CXX ASM)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(PICO_SDK_PATH external/pico-sdk/)
+set(PICO_BOARD "adafruit_qtpy_rp2040") # Changing the board configuration so that the default pin defines are correct for this board
+
+# Initialises the sdk environment
+pico_sdk_init()
+
+#Add all .c files here
+add_executable(qtpySensorModule src/main.c)
+
+#includes the "libs" folder, containing libraries
+include_directories(libs)
+
+# The compile option below optimizes for size, so code size is kept at a minimum
+add_compile_options(-Os -Wall -Wextra)
+
+# The functions below output from printf and puts etc. to go automatically via uart or usb.
+# Change the option you want to 1 and the other to 0.
+# The default option for this template sets it to output over USB so you can read the data from printf
+# by opening the COM Port of the QT Py like an Arduino.
+#pico_enable_stdio_usb(#[[ PROJECT NAME HERE ]] 1)
+#pico_enable_stdio_uart(#[[ PROJECT NAME HERE ]] 0)
+
+pico_add_extra_outputs(qtpySensorModule) # Makes a UF2 file which is needed to upload to the QT Py
+
+target_link_libraries(qtpySensorModule pico_stdlib) # Include the pico libs
+
+# Below definition can be used to change for which sensor the project is built.
+# Change the X in -DDRIVER_X to one of the sensor options (see below).
+# There are three options:
+# - TC74A2 (Temperature)
+# - BME280 (Air Pressure & Temperature)
+# - HM3301 (Particulate Matter (PM1, PM2.5, PM10))
+# Only one sensor can be defined at a time! Otherwise build errors
+#add_definitions(-DDRIVER_TC74A2)

@@ -1,0 +1,21 @@
+$def with(form, ret)
+<html>
+<head>
+                <title> Cyrb Wifi Configurer </title>
+</head>
+<body>
+
+        <div style="width:800px; margin:0 auto;">
+                <img src="/static/cyrb.png" alt="Cyrb Logo" />
+        </div>
+        <div style="width:800px; margin:0 auto;">
+                <h1> Please enter your WiFi credentials down below:</h1>
+                <div style="width:400px; margin:0 auto;">
+                        <form action="" method="post">
+                                $:form.render()
+                        </form>
+                        <h2>$:ret</h2>
+                </div>        
+        </div>
+</body>
+</html>

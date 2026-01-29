@@ -1,0 +1,43 @@
+{
+  "main": {
+    "Model": "Sono_Model_v5_0_2"
+  },
+  "audio": {
+    "reference_dB": 74,
+    "Recording_Timeout": 5,
+    "Recording_Length": 4,
+    "Sample_Rate": 48000,
+    "Max_Recording_Error_Count": 50
+  },
+  "threshold": {
+    "measurement": "dB_A",
+    "static_threshold": 60,
+    "use_dynamic": 1,
+    "MA_speed": 0.001,
+    "threshold_corr_strength": 0.001
+  },
+  "auth": {
+    "email": "SENSOR_NEW_JARNO@cyrb.nl",
+    "password": "NJqpM0oACahl",
+    "token": "56711|nNsB8PHW23EfGWoBgyt49my7gN9mgeHv3D1LS2hq"
+  },
+  "gps": {
+    "use_gps": 0,
+    "latitude": "",
+    "longitude": ""
+  },
+  "System_Parameters": {
+      "Version": "1.12.1",
+      "Max_API_Fail": 125,
+      "Max_Modem_Failure": 0,
+      "Wait_Time_Post_Max_API_Failure": 60,
+      "logger_Level": 20,
+      "Server_IP": "https://dashboard.cyrb.nl/api",
+      "Failed_Recording_Delay": 2,
+      "Min_Confidence_Level": 30,
+      "Maximum_Log_Size_MB": 50,
+      "Maximum_Log_Backup": 5,
+      "Disable_Radio" : 0,
+      "Max_Stored_Buffer" : 0
+  }
+}

@@ -1,0 +1,58 @@
+This document details how the json's can be structured.
+
+Firstly the status json send from the Pi to the Module.
+
+Basic:
+
+json = {
+	"status" : (INT)
+}
+
+json = {
+	"status" : (INT),
+	"target"  : (STRING),
+	"newValue" : (INT)
+}
+
+Extra feaures;
+-change intervalMeasurement
+-change intervalDataRequest
+-change sensorPrepareTime
+-change i2cAddress
+-change modulePriority
+-change i2c baudrate
+
+Status codes:
+-1	| switch data_request to InfoJson
+-2	| makes sensor measurement, switches data_request to sensorMeasurementComplete
+-3	| switch data_request to sensorData
+-4	| change setting in flash
+
+
+The Set-up json the Module sends to the Pi:
+
+json = {
+	"sM" : (INT),	(sensorModuleId	  )	|The unique Id of the sensorModule.
+	"iC" : (INT),   (i2cAddress   	  ) |The I2C address of the sensorModule.
+	"mI" : (INT),  	(measureInterval  )	|The standard time between measurements in secs.
+	"sI" : (int),  	(senseInterval	  )	|The minimum time the Pi has to wait for a measurement to be made in secs.
+	"mP" : (INT),   (modulePriority   ) |The priority of the module, a lower priority means that the module will be shut-off earlier in case of power emergency.
+	"sT" : (INT) ,  (sensorPrepareTime)	|The time it takes for a sensor to be ready for measurements, this time is used if a sensor has a start-up time/warm-up time. Default = 0
+}
+	
+	
+The json send from the module back to the PI with the sensor readings:
+
+json = {
+	"sM" : (INT),	(sensorModuleId	  )	|The unique Id of the sensorModule.
+	"d0" : float,	(data0)
+	"d1" : float,	(data1)
+	"d2" : float,	(data2)
+	etc.
+}
+	
+	
+	
+	
+	
+	

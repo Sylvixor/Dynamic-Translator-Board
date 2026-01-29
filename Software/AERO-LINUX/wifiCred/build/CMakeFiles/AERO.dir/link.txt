@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/AERO.dir/src/main.cpp.o -o AERO  -lrt -lpthread 

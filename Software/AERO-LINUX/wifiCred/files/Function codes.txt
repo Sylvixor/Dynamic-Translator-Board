@@ -1,0 +1,20 @@
+
+
+STATUS_OK       | 0x14
+
+sm_prep_data    | 0x40
+sm_req_data     | 0x41
+
+sm_req_smId     | 0x50
+sm_req_version  | 0x51
+sm_req_state    | 0x52
+
+
+sm_start_sleep  | 0x60
+sm_reboot       | 0x61
+
+
+from linux data structure: : {DATA:DATA,DATA:DATA:CRC}
+from module data structure: : {STATUS:DATA,DATA:DATA:CRC}
+
+
