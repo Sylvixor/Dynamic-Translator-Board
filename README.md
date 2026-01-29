@@ -27,26 +27,22 @@ DTB/
 ├── README.md
 ├── DOCX/
 │   ├── Experimenteel Onderzoek.docx
-│   ├── Kapstokdocument.docx.docx
-│   ├── Onderzoek Modulariteit.docx
+│   ├── Kapstokdocument.docx
+│   ├── Onderzoeksverslag modulariteit.docx
 │   ├── Probleemomschrijving.docx
 │   ├── Requirementsanalyse.docx
 │   ├── Risicoanalyse.docx
 │   ├── Testrapport.docx
+|   ├── Evaluatie opdrachtgever.docx
+|   ├── Sprintplanning prjt56.xlsx
+|   ├── UserStories + Requirements.xlsx
 │   └── Gebruikersonderzoek.docx
 ├── IMG/
 │   ├── Architectuur_diagram.png
+|   ├── Architectuurdiagram(begin).png
 │   ├── Poster.png
+|   ├── Flowchart(begin).png
 │   └── Flowchart.png
-├── MD/
-│   ├── Gebruikersonderzoek.md
-│   ├── Kapstokdocument.docx.md
-│   ├── Experimenteel_Onderzoek.md
-│   ├── Onderzoek_Modulariteit.md
-│   ├── Probleemomschrijving.md
-│   ├── Requirementsanalyse.md
-│   ├── Risicoanalyse.md
-│   └── Testrapport.md
 ├── VID/
 │   ├── Test1.mp4
 │   ├── Test2.mp4
